@@ -10,5 +10,3 @@ D:\visual studio 2013\Projects\WPFTest\WPFTest\obj\Debug\WPFTest.csproj.Generate
 D:\visual studio 2013\Projects\WPFTest\WPFTest\obj\Debug\WPFTest.exe
 D:\visual studio 2013\Projects\WPFTest\WPFTest\obj\Debug\WPFTest.pdb
 D:\visual studio 2013\Projects\WPFTest\WPFTest\obj\Debug\WPFTest.csprojResolveAssemblyReference.cache
-D:\WPFTest\WPFTest\obj\Debug\WPFTest.exe
-D:\WPFTest\WPFTest\obj\Debug\WPFTest.pdb

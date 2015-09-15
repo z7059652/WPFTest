@@ -21,24 +21,44 @@ namespace WPFTest
     /// </summary>
     public partial class MainWindow : Window
     {
-//        List<Program> ReadyList = new List<Program>();
-        List<Program> LocalList = new List<Program>();
-        ObservableCollection<Program> ReadyList = new ObservableCollection<Program>();
-        Program CurrentSelected = null;
+        IList<Program> ProList = null;
+        IList<Program> LocalList = null;
+        ObservableCollection<Program> ObReadyList = null;
+        ObservableCollection<Program> ObLocalList = null;
+
+        AProgram local = new LocalProgram();
+        AProgram ready = new ReadyProgram();
+        Program ReadyCurrentSelected = null;
+        Program LocalCurrentSelected = null;
         public MainWindow()
         {
            InitializeComponent();
-           List<Program> ProList = new List<Program>();
-           ProList.Add(new Program(false, "SKYPE", "C:\\Program Files (x86)\\Skype\\Phone\\Skype.exe"));
-           ReadyList = new ObservableCollection<Program>(ProList);
-           ReadyProgram.ItemsSource = ReadyList;
+           LocalList = (List<Program>)local.LoadProgram();
+           ObLocalList = new ObservableCollection<Program>(LocalList);
+           LocalProgram.ItemsSource = ObLocalList;
+
+           ProList = ready.LoadProgram();
+           ObReadyList = new ObservableCollection<Program>(ProList);
+           ReadyProgram.ItemsSource = ObReadyList;
+        }
+        private void ReadyRowSelectChanged(object sender, SelectionChangedEventArgs e)
+        {
+            ReadyCurrentSelected = ReadyProgram.SelectedItem as Program;
         }
 
-
-        private void RowSelectChanged(object sender, SelectionChangedEventArgs e)
+        private void Local2Ready_Click(object sender, RoutedEventArgs e)
         {
-            CurrentSelected = ReadyProgram.SelectedItem as Program;
-            MessageBox.Show(CurrentSelected.Name);
+
+        }
+
+        private void Ready2Local_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void LocalRowSelectChanged(object sender, SelectionChangedEventArgs e)
+        {
+            LocalCurrentSelected = LocalProgram.SelectedItem as Program;
         }
         
  

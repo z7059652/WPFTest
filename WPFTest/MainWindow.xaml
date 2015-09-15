@@ -1,7 +1,7 @@
 ﻿<Window x:Class="WPFTest.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="TestWPF" Height="467" Width="916" ResizeMode="NoResize">
+        Title="TiRa APP Manger" Height="464" Width="952" ResizeMode="NoResize">
     <Window.Resources>
         <CollectionViewSource x:Key="ItemCollectionViewSource" CollectionViewType="ListCollectionView"/>
     </Window.Resources>
@@ -12,23 +12,31 @@
                 <ColumnDefinition Width="59*"/>
                 <ColumnDefinition Width="347*"/>
             </Grid.ColumnDefinitions>
-            <Label Content="Local Program" Height="34" x:Name="Label1" VerticalAlignment="Top" Background="#FF33375F" Foreground="#FFF2F3FC" FontWeight="Bold" FontStretch="Normal" FontSize="14" />
+            <Label Content="Local Program" Height="34" x:Name="Label1" VerticalAlignment="Top" Background="#FF33375F" Foreground="#FFF2F3FC" FontWeight="Bold" FontStretch="Normal" FontSize="14" Grid.ColumnSpan="2" Margin="0,0,32,0" />
             <Grid Grid.Column="0" Margin="0,0,3,-202" >
-                <DataGrid x:Name="LocalProgram"  Height="401" VerticalAlignment="Bottom" Margin="0,0,2,142">
+                <DataGrid x:Name="LocalProgram"  ItemsSource="{Binding}" AutoGenerateColumns="False" Height="401" VerticalAlignment="Bottom" Margin="0,0,-38,142" SelectionChanged="LocalRowSelectChanged" >
                     <DataGrid.Columns>
-                        <DataGridCheckBoxColumn Header="Select" Width="45"/>
-                        <DataGridTextColumn Header="Name" Width="100"/>
-                        <DataGridTextColumn Header="Path" Width="250"/>
+                        <DataGridCheckBoxColumn Header="Select" Width="45" Binding="{Binding Select}"/>
+                        <DataGridTemplateColumn Header="Icon" Width="20" IsReadOnly="True">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <Image Height="20" Width="35" Source="{Binding Icon}" />
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+
+                        <DataGridTextColumn Header="Name" Width="100" Binding="{Binding Name}"/>
+                        <DataGridTextColumn Header="Path" Width="250" Binding="{Binding Path}"/>
                     </DataGrid.Columns>
                 </DataGrid>
             </Grid>
             <Grid Margin="2,22,345,-22"  Grid.Column="1">
-                <Button Margin="13,108,-49,235" Content="&gt;&gt;" IsDefault="True"/>
-                <Button Margin="13,157,-49,188" Content="&lt;&lt;" IsDefault="True"/>
-                <Button Margin="-1,289,-58,59" x:Name="Refresh"  Content="Refresh" IsDefault="True"/>
+                <Button Name="Local2Ready" Margin="47,108,-83,235" Content="&gt;&gt;" IsDefault="True" Click="Local2Ready_Click"/>
+                <Button Name="Ready2Local" Margin="47,157,-83,188" Content="&lt;&lt;" IsDefault="True" Click="Ready2Local_Click"/>
+                <Button Margin="34,289,-93,59" x:Name="Refresh"  Content="Refresh" IsDefault="True"/>
             </Grid>
 
-            <DataGrid x:Name="ReadyProgram"  Grid.Column="2"  ItemsSource="{Binding}" AutoGenerateColumns="False" Margin="0,34,-35,-58" SelectionChanged="RowSelectChanged" >
+            <DataGrid x:Name="ReadyProgram"  Grid.Column="2"  ItemsSource="{Binding}" AutoGenerateColumns="False" Margin="36,34,-92,-58" SelectionChanged="ReadyRowSelectChanged" >
                 <DataGrid.Columns>
                     <DataGridCheckBoxColumn Header="Select" Width="45" Binding="{Binding Select}"/>
                     <DataGridTemplateColumn Header="Icon" Width="20" IsReadOnly="True">
@@ -44,8 +52,8 @@
 
             </DataGrid>
 
-            <Label Content="Ready Program" Height="34" HorizontalAlignment="Left" x:Name="Label1_Copy" VerticalAlignment="Top" Width="419" Background="#FF33375F" Foreground="#FFF2F3FC" FontWeight="Bold" FontStretch="Normal" FontSize="14" Grid.Column="2" Margin="0,0,-35,0" />
-            <Label Content="" Height="34" x:Name="Label1_Copy1" VerticalAlignment="Top" Background="#FF333000" Foreground="#FFF2F3FC" FontWeight="Bold" FontStretch="Normal" FontSize="14" Grid.ColumnSpan="2" Margin="399,0,0,0" />
+            <Label Content="Ready Program" Height="34" HorizontalAlignment="Left" x:Name="Label1_Copy" VerticalAlignment="Top" Width="440" Background="#FF33375F" Foreground="#FFF2F3FC" FontWeight="Bold" FontStretch="Normal" FontSize="14" Grid.Column="2" Margin="36,0,-92,0" />
+            <Label Content="" Height="34" x:Name="Label1_Copy1" VerticalAlignment="Top" Background="#FF333000" Foreground="#FFF2F3FC" FontWeight="Bold" FontStretch="Normal" FontSize="14" Grid.ColumnSpan="2" Margin="33,0,348,0" Grid.Column="1" />
         </Grid>
     </StackPanel>
 </Window>

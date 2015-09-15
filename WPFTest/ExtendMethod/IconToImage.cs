@@ -55,10 +55,23 @@ namespace WPFTest.ExtendMethod
         public static string ToImage(this string path,string name)
         {
             SHFILEINFO shinfo = new SHFILEINFO();
-            Win32.SHGetFileInfo(path, 0, ref shinfo, (uint)Marshal.SizeOf(shinfo), Win32.SHGFI_ICON | Win32.SHGFI_SMALLICON);
-            Icon myIcon = Icon.FromHandle(shinfo.hIcon);
-            Image myImage = Image.FromHbitmap(myIcon.ToBitmap().GetHbitmap());
-            return myImage.SaveToFile(name+".ico");             
+            path = path.Trim();
+            if(path.StartsWith("\""))
+            {
+                path = path.Substring(1,path.Length - 2);
+            }
+            try
+            {
+                Win32.SHGetFileInfo(path, 0, ref shinfo, (uint)Marshal.SizeOf(shinfo), Win32.SHGFI_ICON | Win32.SHGFI_SMALLICON);
+                Icon myIcon = Icon.FromHandle(shinfo.hIcon);
+                Image myImage = Image.FromHbitmap(myIcon.ToBitmap().GetHbitmap());
+                return myImage.SaveToFile(name + ".ico");             
+
+            }
+            catch(Exception e)
+            {
+                return null;
+            }
         }
     }
 }

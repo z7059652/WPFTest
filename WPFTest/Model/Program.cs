@@ -69,5 +69,10 @@ namespace WPFTest.Model
                 return sPath;
             }
         }
+        public override bool Equals(Object obj)
+        {
+            Program b = (Program)obj;
+            return this.Path.Equals(b.Path);
+        }
     }
 }
