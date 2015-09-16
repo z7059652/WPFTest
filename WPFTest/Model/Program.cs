@@ -21,10 +21,21 @@ namespace WPFTest.Model
             sPath = path;
             icon = path.ToImage(name);
         }
+
+        public Program(Program item)
+        {
+            // TODO: Complete member initialization
+//            this.item = item;
+            IsSelect = item.IsSelect;
+            sName = string.Copy(item.sName);
+            sPath = string.Copy(item.sPath);
+            icon = string.Copy(item.Icon);
+        }
         bool IsSelect;
         string sName;
         string sPath;
         string icon;
+        private Program item;
         public string Icon
         {
             set
@@ -71,8 +82,17 @@ namespace WPFTest.Model
         }
         public override bool Equals(Object obj)
         {
-            Program b = (Program)obj;
-            return this.Path.Equals(b.Path);
+            if (obj == null)
+                return false;
+            try
+            {
+                Program b = (Program)obj;
+                return this.Path.Equals(b.Path);
+            }
+            catch(Exception e)
+            {
+                return false;
+            }
         }
     }
 }

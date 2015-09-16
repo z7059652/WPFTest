@@ -28,8 +28,8 @@ namespace WPFTest
 
         AProgram local = new LocalProgram();
         AProgram ready = new ReadyProgram();
-        Program ReadyCurrentSelected = null;
-        Program LocalCurrentSelected = null;
+        IList<Program> ReadyCurrentSelected = new List<Program>();
+        IList<Program> LocalCurrentSelected = new List<Program>();
         public MainWindow()
         {
            InitializeComponent();
@@ -41,26 +41,43 @@ namespace WPFTest
            ObReadyList = new ObservableCollection<Program>(ProList);
            ReadyProgram.ItemsSource = ObReadyList;
         }
-        private void ReadyRowSelectChanged(object sender, SelectionChangedEventArgs e)
-        {
-            ReadyCurrentSelected = ReadyProgram.SelectedItem as Program;
-        }
 
         private void Local2Ready_Click(object sender, RoutedEventArgs e)
         {
-
+            LocalCurrentSelected.Clear();
+            foreach (Program item in LocalProgram.SelectedItems)
+            {
+                Program temp = new Program(item);
+                LocalCurrentSelected.Add(temp);
+            }
+            HandleProgramService.INST.MoveTo(ObLocalList, ObReadyList, LocalCurrentSelected);
         }
 
         private void Ready2Local_Click(object sender, RoutedEventArgs e)
         {
-
+//             ReadyCurrentSelected = (IList<Program>)ReadyProgram.SelectedItem;
+            ReadyCurrentSelected.Clear();
+            foreach(Program item in ReadyProgram.SelectedItems)
+            {
+                Program temp = new Program(item);
+                ReadyCurrentSelected.Add(temp);
+            }
+            HandleProgramService.INST.MoveTo(ObReadyList,ObLocalList,  ReadyCurrentSelected);
         }
 
         private void LocalRowSelectChanged(object sender, SelectionChangedEventArgs e)
         {
-            LocalCurrentSelected = LocalProgram.SelectedItem as Program;
         }
-        
+        private void ReadyRowSelectChanged(object sender, SelectionChangedEventArgs e)
+        {
+        }
+
+        private void Start_Click(object sender, RoutedEventArgs e)
+        {
+            LanuchProcess lp = new LanuchProcess();
+            lp.Start("cmd.exe", @"C:/Windows/System32/");
+        }
+    
  
     }
 }

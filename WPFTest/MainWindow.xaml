@@ -33,7 +33,8 @@
             <Grid Margin="2,22,345,-22"  Grid.Column="1">
                 <Button Name="Local2Ready" Margin="47,108,-83,235" Content="&gt;&gt;" IsDefault="True" Click="Local2Ready_Click"/>
                 <Button Name="Ready2Local" Margin="47,157,-83,188" Content="&lt;&lt;" IsDefault="True" Click="Ready2Local_Click"/>
-                <Button Margin="34,289,-93,59" x:Name="Refresh"  Content="Refresh" IsDefault="True"/>
+                <Button Margin="36,289,-95,59" x:Name="Refresh"  Content="Refresh" IsDefault="True"/>
+                <Button Margin="36,351,-95,-3" x:Name="Start"  Content="Start" IsDefault="True" Click="Start_Click"/>
             </Grid>
 
             <DataGrid x:Name="ReadyProgram"  Grid.Column="2"  ItemsSource="{Binding}" AutoGenerateColumns="False" Margin="36,34,-92,-58" SelectionChanged="ReadyRowSelectChanged" >

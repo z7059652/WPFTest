@@ -6,11 +6,24 @@ using WPFTest.Model;
 
 namespace WPFTest
 {
-    public class HandleProgram
+    public class HandleProgramService
     {
-        public bool MoveTo(IList<Program> src,IList<Program> des,Program item)
+        private static HandleProgramService _instance = new HandleProgramService();
+        public bool MoveTo(IList<Program> src, IList<Program> des, IList<Program> items)
         {
+            foreach(Program item in items)
+            {
+                src.Remove(item);
+                des.Add(item);
+            }
             return true;
+        }
+        public static HandleProgramService INST
+        {
+            get
+            {
+                return _instance;
+            }
         }
     }
 }
