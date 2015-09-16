@@ -18,6 +18,16 @@ namespace WPFTest
             }
             return true;
         }
+        public void RefreshSelected(ref IList<Program> list, System.Collections.IList SelectItems)
+        {
+            list.Clear();
+            foreach (Program item in SelectItems)
+            {
+                Program temp = new Program(item);
+                list.Add(temp);
+            }
+        }
+
         public static HandleProgramService INST
         {
             get

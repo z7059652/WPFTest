@@ -44,24 +44,12 @@ namespace WPFTest
 
         private void Local2Ready_Click(object sender, RoutedEventArgs e)
         {
-            LocalCurrentSelected.Clear();
-            foreach (Program item in LocalProgram.SelectedItems)
-            {
-                Program temp = new Program(item);
-                LocalCurrentSelected.Add(temp);
-            }
+            HandleProgramService.INST.RefreshSelected(ref LocalCurrentSelected, LocalProgram.SelectedItems);
             HandleProgramService.INST.MoveTo(ObLocalList, ObReadyList, LocalCurrentSelected);
         }
-
         private void Ready2Local_Click(object sender, RoutedEventArgs e)
         {
-//             ReadyCurrentSelected = (IList<Program>)ReadyProgram.SelectedItem;
-            ReadyCurrentSelected.Clear();
-            foreach(Program item in ReadyProgram.SelectedItems)
-            {
-                Program temp = new Program(item);
-                ReadyCurrentSelected.Add(temp);
-            }
+            HandleProgramService.INST.RefreshSelected(ref ReadyCurrentSelected, ReadyProgram.SelectedItems);
             HandleProgramService.INST.MoveTo(ObReadyList,ObLocalList,  ReadyCurrentSelected);
         }
 
@@ -74,10 +62,10 @@ namespace WPFTest
 
         private void Start_Click(object sender, RoutedEventArgs e)
         {
+            HandleProgramService.INST.RefreshSelected(ref ReadyCurrentSelected, ReadyProgram.SelectedItems);            
             LanuchProcess lp = new LanuchProcess();
-            lp.Start("cmd.exe", @"C:/Windows/System32/");
-        }
-    
- 
+            lp.Start(ReadyCurrentSelected);
+            System.Diagnostics.Process.GetCurrentProcess().Kill();
+        } 
     }
 }

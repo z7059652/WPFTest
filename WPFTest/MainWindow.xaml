@@ -16,7 +16,7 @@
             <Grid Grid.Column="0" Margin="0,0,3,-202" >
                 <DataGrid x:Name="LocalProgram"  ItemsSource="{Binding}" AutoGenerateColumns="False" Height="401" VerticalAlignment="Bottom" Margin="0,0,-38,142" SelectionChanged="LocalRowSelectChanged" >
                     <DataGrid.Columns>
-                        <DataGridCheckBoxColumn Header="Select" Width="45" Binding="{Binding Select}"/>
+                        <DataGridCheckBoxColumn Header="Select" Width="45" Binding="{Binding Select}"  Visibility="Hidden"/>
                         <DataGridTemplateColumn Header="Icon" Width="20" IsReadOnly="True">
                             <DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate>
@@ -39,7 +39,7 @@
 
             <DataGrid x:Name="ReadyProgram"  Grid.Column="2"  ItemsSource="{Binding}" AutoGenerateColumns="False" Margin="36,34,-92,-58" SelectionChanged="ReadyRowSelectChanged" >
                 <DataGrid.Columns>
-                    <DataGridCheckBoxColumn Header="Select" Width="45" Binding="{Binding Select}"/>
+                    <DataGridCheckBoxColumn Header="Select" Width="45" Binding="{Binding Select}" Visibility="Hidden"/>
                     <DataGridTemplateColumn Header="Icon" Width="20" IsReadOnly="True">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
