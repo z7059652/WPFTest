@@ -9,6 +9,7 @@ using System.Text;
 using System.Runtime.InteropServices;
 using System.IO;
 using WPFTest.ExtendMethod;
+using System.Windows.Media;
 
 namespace WPFTest.Model
 {
@@ -19,7 +20,7 @@ namespace WPFTest.Model
             IsSelect = flag;
             sName = name;
             sPath = path;
-            icon = path.ToImage(name);
+            icon = path.ToImageSource();
         }
 
         public Program(Program item)
@@ -29,14 +30,14 @@ namespace WPFTest.Model
             IsSelect = item.IsSelect;
             sName = string.Copy(item.sName);
             sPath = string.Copy(item.sPath);
-            icon = string.Copy(item.Icon);
+            icon = item.Icon;
         }
         bool IsSelect;
         string sName;
         string sPath;
-        string icon;
+        ImageSource icon;
         private Program item;
-        public string Icon
+        public ImageSource Icon
         {
             set
             {

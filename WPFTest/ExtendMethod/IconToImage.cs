@@ -6,6 +6,10 @@ using System.Drawing;
 using System.Text;
 using System.Runtime.InteropServices;
 using System.IO;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
+using System.Windows;
+using System.Windows.Interop;
 
 namespace WPFTest.ExtendMethod
 {
@@ -62,16 +66,23 @@ namespace WPFTest.ExtendMethod
             }
             try
             {
-                Win32.SHGetFileInfo(path, 0, ref shinfo, (uint)Marshal.SizeOf(shinfo), Win32.SHGFI_ICON | Win32.SHGFI_SMALLICON);
+                Win32.SHGetFileInfo(path, 0, ref shinfo, (uint)Marshal.SizeOf(shinfo), Win32.SHGFI_ICON | Win32.SHGFI_LARGEICON);
                 Icon myIcon = Icon.FromHandle(shinfo.hIcon);
                 Image myImage = Image.FromHbitmap(myIcon.ToBitmap().GetHbitmap());
-                return myImage.SaveToFile(name + ".ico");             
-
+                return myImage.SaveToFile(name + ".png");
             }
             catch(Exception e)
             {
                 return null;
             }
+        }
+        public static ImageSource ToImageSource(this string path)
+        {
+            SHFILEINFO shinfo = new SHFILEINFO();
+            Win32.SHGetFileInfo(path, 0, ref shinfo, (uint)Marshal.SizeOf(shinfo), Win32.SHGFI_ICON | Win32.SHGFI_LARGEICON);
+            Icon myIcon = Icon.FromHandle(shinfo.hIcon);
+            ImageSource imageSource = Imaging.CreateBitmapSourceFromHIcon(myIcon.Handle, Int32Rect.Empty, BitmapSizeOptions.FromEmptyOptions());
+            return imageSource; 
         }
     }
 }

@@ -62,10 +62,12 @@ namespace WPFTest
 
         private void Start_Click(object sender, RoutedEventArgs e)
         {
+            Home a = new Home();
+            a.ShowDialog();
             HandleProgramService.INST.RefreshSelected(ref ReadyCurrentSelected, ReadyProgram.SelectedItems);            
             LanuchProcess lp = new LanuchProcess();
             lp.Start(ReadyCurrentSelected);
-            System.Diagnostics.Process.GetCurrentProcess().Kill();
+        //    System.Diagnostics.Process.GetCurrentProcess().Kill();
         } 
     }
 }
