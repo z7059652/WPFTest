@@ -28,6 +28,7 @@ namespace WPFTest
         public Home()
         {
             InitializeComponent();
+//            this.Icon ="D:\\WPFTest\\360logo.ico";
             LocalList = local.LoadProgram();
             ObLocalList = new ObservableCollection<Program>(LocalList);
             this.IconList.ItemsSource = ObLocalList;

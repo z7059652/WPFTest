@@ -32,10 +32,11 @@ namespace WPFTest
         public MainWindow(IList<Program> LoList)
         {
            InitializeComponent();
+
            LocalList = (List<Program>)local.LoadProgram(LoList);
            ObLocalList = new ObservableCollection<Program>(LocalList);
            LocalProgram.ItemsSource = ObLocalList;
-
+           
            ProList = LoList;
            ObReadyList = new ObservableCollection<Program>(LoList);
            ReadyProgram.ItemsSource = ObReadyList;
