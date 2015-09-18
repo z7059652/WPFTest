@@ -15,9 +15,8 @@ namespace WPFTest.Model
 {
     public class Program
     {
-        public Program(bool flag,string name,string path)
+        public Program(string name,string path)
         {
-            IsSelect = flag;
             sName = name;
             sPath = path;
             icon = path.ToImageSource();
@@ -25,14 +24,10 @@ namespace WPFTest.Model
 
         public Program(Program item)
         {
-            // TODO: Complete member initialization
-//            this.item = item;
-            IsSelect = item.IsSelect;
             sName = string.Copy(item.sName);
             sPath = string.Copy(item.sPath);
             icon = item.Icon;
         }
-        bool IsSelect;
         string sName;
         string sPath;
         ImageSource icon;
@@ -46,17 +41,6 @@ namespace WPFTest.Model
             get
             {
                 return icon;
-            }
-        }
-        public bool Select
-        {
-            set
-            {
-                IsSelect = value;
-            }
-            get
-            {
-                return IsSelect;
             }
         }
         public string Name

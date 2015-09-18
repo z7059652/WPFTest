@@ -22,12 +22,13 @@ namespace WPFTest
     {
         FileService FileSrv = new FileService();
         public ObservableCollection<Program> ObLocalList = null;
+        AProgram local = new ReadyProgram();
 
         public IList<Program> LocalList = new List<Program>();
         public Home()
         {
             InitializeComponent();
-            AProgram local = new LocalProgram();
+            LocalList = local.LoadProgram();
             ObLocalList = new ObservableCollection<Program>(LocalList);
             this.IconList.ItemsSource = ObLocalList;
         }
@@ -37,8 +38,14 @@ namespace WPFTest
             LanuchProcess lp = new LanuchProcess();
             if(p != null)
                 lp.Start(p.Path);
+            Stop();
         }
-
+        private void Stop()
+        {
+            local.ProList = ObLocalList;
+            local.SaveProgram();
+            System.Diagnostics.Process.GetCurrentProcess().Kill();
+        }
         private void BeginMove(object sender, MouseButtonEventArgs e)
         {
             this.DragMove();
@@ -46,7 +53,7 @@ namespace WPFTest
 
         private void Close_click(object sender, RoutedEventArgs e)
         {
-            System.Diagnostics.Process.GetCurrentProcess().Kill();
+            Stop();
         }
 
         private void Configure_Click(object sender, RoutedEventArgs e)

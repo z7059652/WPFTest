@@ -27,7 +27,6 @@ namespace WPFTest
         ObservableCollection<Program> ObLocalList = null;
         public Home pwnd = null;
         AProgram local = new LocalProgram();
-        AProgram ready = new ReadyProgram();
         IList<Program> ReadyCurrentSelected = new List<Program>();
         IList<Program> LocalCurrentSelected = new List<Program>();
         public MainWindow(IList<Program> LoList)

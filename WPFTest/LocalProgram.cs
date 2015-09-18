@@ -13,6 +13,8 @@ namespace WPFTest
         public override IList<Program> LoadProgram(IList<Program> list = null)
         {
             LoadProgram();
+            if (null == list)
+                return ProList;
             foreach (Program p in list)
             {
                 if (ProList.Contains(p))
@@ -20,7 +22,7 @@ namespace WPFTest
             }
             return ProList;
         }
-        public IList<Program> LoadProgram()
+        private IList<Program> LoadProgram()
         {
 
             string displayName = null;
@@ -33,7 +35,7 @@ namespace WPFTest
                     displayName = subkey.GetValue("") as string;
                     if (displayName != null)
                     {
-                        Program temp = new Program(false, name, displayName);
+                        Program temp = new Program(name, displayName);
                         if (!ProList.Contains(temp))
                             ProList.Add(temp);
                     }
@@ -42,7 +44,6 @@ namespace WPFTest
             catch (Exception e)
             {
                 string error = e.Message;
-                //                continue;
                 return ProList;
             }
             return this.ProList;

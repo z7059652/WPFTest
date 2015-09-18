@@ -17,7 +17,7 @@
                 <DataGrid x:Name="LocalProgram"  ItemsSource="{Binding}" AutoGenerateColumns="False" Height="401" VerticalAlignment="Bottom" Margin="0,0,-38,142" SelectionChanged="LocalRowSelectChanged" >
                     <DataGrid.Columns>
                         <DataGridCheckBoxColumn Header="Select" Width="45" Binding="{Binding Select}"  Visibility="Hidden"/>
-                        <DataGridTemplateColumn Header="Icon" Width="20" IsReadOnly="True">
+                        <DataGridTemplateColumn Header="Icon" Width="30" IsReadOnly="True">
                             <DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate>
                                     <Image Height="20" Width="35" Source="{Binding Icon}" />
@@ -25,8 +25,8 @@
                             </DataGridTemplateColumn.CellTemplate>
                         </DataGridTemplateColumn>
 
-                        <DataGridTextColumn Header="Name" Width="100" Binding="{Binding Name}"/>
-                        <DataGridTextColumn Header="Path" Width="250" Binding="{Binding Path}"/>
+                        <DataGridTextColumn Header="Name" Width="60" Binding="{Binding Name}"/>
+                        <DataGridTextColumn Header="Path" Width="300" Binding="{Binding Path}"/>
                     </DataGrid.Columns>
                 </DataGrid>
             </Grid>
@@ -43,7 +43,7 @@
                     <DataGridTemplateColumn Header="Icon" Width="20" IsReadOnly="True">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
-                                <Image Height="20"  Source="{Binding Icon}" />
+                                <Image Height="20" Width="35" Source="{Binding Icon}" />
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>
