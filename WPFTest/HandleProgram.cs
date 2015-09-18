@@ -14,7 +14,8 @@ namespace WPFTest
             foreach(Program item in items)
             {
                 src.Remove(item);
-                des.Add(item);
+                if(!des.Contains(item))
+                    des.Add(item);
             }
             return true;
         }

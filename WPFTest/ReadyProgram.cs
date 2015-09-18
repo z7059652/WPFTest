@@ -8,7 +8,7 @@ namespace WPFTest
     public class ReadyProgram:AProgram
     {
         private FileService file = new FileService();
-        public override IList<Program> LoadProgram()
+        public override IList<Program> LoadProgram(IList<Program> list = null)
         {
             file.LoadProgram(ref this.ProList);
             return this.ProList;

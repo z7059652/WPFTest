@@ -9,8 +9,7 @@ namespace WPFTest
     public abstract class AProgram
     {
         public IList<Program> ProList = new List<Program>();
-        public abstract IList<Program> LoadProgram();
+        public abstract IList<Program> LoadProgram(IList<Program> list = null);
         public abstract bool SaveProgram();
-
     }
 }

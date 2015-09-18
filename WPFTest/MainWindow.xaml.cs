@@ -25,20 +25,20 @@ namespace WPFTest
         IList<Program> LocalList = null;
         ObservableCollection<Program> ObReadyList = null;
         ObservableCollection<Program> ObLocalList = null;
-
+        public Home pwnd = null;
         AProgram local = new LocalProgram();
         AProgram ready = new ReadyProgram();
         IList<Program> ReadyCurrentSelected = new List<Program>();
         IList<Program> LocalCurrentSelected = new List<Program>();
-        public MainWindow()
+        public MainWindow(IList<Program> LoList)
         {
            InitializeComponent();
-           LocalList = (List<Program>)local.LoadProgram();
+           LocalList = (List<Program>)local.LoadProgram(LoList);
            ObLocalList = new ObservableCollection<Program>(LocalList);
            LocalProgram.ItemsSource = ObLocalList;
 
-           ProList = ready.LoadProgram();
-           ObReadyList = new ObservableCollection<Program>(ProList);
+           ProList = LoList;
+           ObReadyList = new ObservableCollection<Program>(LoList);
            ReadyProgram.ItemsSource = ObReadyList;
         }
 
@@ -46,6 +46,7 @@ namespace WPFTest
         {
             HandleProgramService.INST.RefreshSelected(ref LocalCurrentSelected, LocalProgram.SelectedItems);
             HandleProgramService.INST.MoveTo(ObLocalList, ObReadyList, LocalCurrentSelected);
+            ProList = ObReadyList;
         }
         private void Ready2Local_Click(object sender, RoutedEventArgs e)
         {
@@ -67,7 +68,11 @@ namespace WPFTest
             HandleProgramService.INST.RefreshSelected(ref ReadyCurrentSelected, ReadyProgram.SelectedItems);            
             LanuchProcess lp = new LanuchProcess();
             lp.Start(ReadyCurrentSelected);
-        //    System.Diagnostics.Process.GetCurrentProcess().Kill();
-        } 
+        }
+        protected override void OnClosed(EventArgs e)
+        {
+            pwnd.ObLocalList = ObReadyList;
+            base.OnClosed(e);
+        }
     }
 }
