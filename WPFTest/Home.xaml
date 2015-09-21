@@ -1,7 +1,7 @@
 ﻿<Window x:Class="WPFTest.Home"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="App" Height="410" Width="720" ResizeMode="NoResize" WindowStyle="None" Icon="D:\WPFTest\360logo.ico">
+        Title="App" Height="410" Width="720" ResizeMode="NoResize" WindowStyle="None" Icon="Resources\360logo.ico">
     <StackPanel Background="#FFFBFAED">
         <Grid>
             <Label Background="#FF1F9733" Opacity="0.8" MouseLeftButtonDown="BeginMove" Margin="0,0,0,1"/>

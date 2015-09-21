@@ -41,6 +41,10 @@ namespace WPFTest
         {
             try
             {           
+                if(File.Exists(file))
+                {
+                    File.Delete(file);
+                }
                 FileStream fs = new FileStream(file,FileMode.OpenOrCreate);
                 StreamWriter sw = new StreamWriter(fs);
                 sw.WriteLine(fileHead);
