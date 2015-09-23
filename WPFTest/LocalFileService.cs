@@ -2,14 +2,14 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using WPFTest.Model;
+
 namespace WPFTest
 {
-    public class ReadyProgram:AProgram
+    public class LocalFileService:AFileService
     {
-        public ReadyProgram()
+        public LocalFileService(string filename)
         {
-            file = new ReadyFileService("default.ini");
+            file = path + "\\" + filename;
         }
     }
 }

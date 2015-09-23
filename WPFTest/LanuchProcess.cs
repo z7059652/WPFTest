@@ -12,7 +12,6 @@ namespace WPFTest
 {
     public class LanuchProcess
     {
-
        public bool Start(string path)
        {
             Process p = System.Diagnostics.Process.Start(path);

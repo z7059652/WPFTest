@@ -54,11 +54,13 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="AFileService.cs" />
     <Compile Include="HandleProgram.cs" />
     <Compile Include="Home.xaml.cs">
       <DependentUpon>Home.xaml</DependentUpon>
     </Compile>
     <Compile Include="LanuchProcess.cs" />
+    <Compile Include="LocalFileService.cs" />
     <Compile Include="ReadyProgram.cs" />
     <Page Include="Home.xaml">
       <SubType>Designer</SubType>
@@ -74,7 +76,7 @@
     </Compile>
     <Compile Include="ExtendMethod\IconToImage.cs" />
     <Compile Include="AProgram.cs" />
-    <Compile Include="FileService.cs" />
+    <Compile Include="ReadyFileService.cs" />
     <Compile Include="LocalProgram.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>

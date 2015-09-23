@@ -6,10 +6,18 @@ using WPFTest.Model;
 
 namespace WPFTest
 {
-    public abstract class AProgram
+    public class AProgram
     {
         public IList<Program> ProList = new List<Program>();
-        public abstract IList<Program> LoadProgram(IList<Program> list = null);
-        public abstract bool SaveProgram();
+        protected AFileService file;
+        public IList<Program> LoadProgram(IList<Program> list = null)
+        {
+            file.LoadProgram(ref this.ProList);
+            return this.ProList;
+        }
+        public bool SaveProgram()
+        {
+            return file.SaveProgram(this.ProList);
+        }
     }
 }

@@ -20,7 +20,6 @@ namespace WPFTest
     /// </summary>
     public partial class Home : Window
     {
-        FileService FileSrv = new FileService();
         public ObservableCollection<Program> ObLocalList = null;
         AProgram local = new ReadyProgram();
 
@@ -28,7 +27,6 @@ namespace WPFTest
         public Home()
         {
             InitializeComponent();
-//            this.Icon ="D:\\WPFTest\\360logo.ico";
             LocalList = local.LoadProgram();
             ObLocalList = new ObservableCollection<Program>(LocalList);
             this.IconList.ItemsSource = ObLocalList;
